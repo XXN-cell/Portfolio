@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bgs.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css'>
+    <link rel="stylesheet" href="{% static 'css/selectstyle.css' %}">
+    <title>Hello world</title>
+</head>
+<body style="background-color:  #F986D2;">
+<!-- partial:index.partial.html -->
+
+{#<img src="/static/img/res.jpg" style="width: 500px;height: 500px">?#}
+<h2>图像风格迁移</h2>
+<br>
+<br>
+
+<form action="{% url 'webapp:uplogic' %}" method="post" enctype="multipart/form-data" id="file-upload-form" class="uploader">
+    {% csrf_token %}
+    <input id="file-upload" type="file" name="source" accept="image/*" />
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>选择或者拖拽一个图片</div>
+      <div id="notimage" class="hidden">请选择一个图片</div>
+      <span id="file-upload-btn" class="btn btn-primary">请选择一个图片</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+{#      <progress class="progress" id="file-progress" value="0">#}
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script  type="text/javascript" language="javascript" src="{% static 'js/script.js' %}" charset="gb2312"></script>
+{#    <input type="file" name="source" accept="image/*">#}
+{#    <select name="sele">#}
+{#        <option value="cubist">cubist</option>#}
+{#        <option value="denoised_starry">denoised_starry</option>#}
+{#        <option value="feathers">feathers</option>#}
+{#        <option value="mosaic">mosaic</option>#}
+{#        <option value="scream">scream</option>#}
+{#        <option value="udnie">udnie</option>#}
+{#        <option value="wave">wave</option>#}
+{##}
+{#    </select>#}
+
+<select  name="sele" class="selectpicker">
+  <option value="wave" data-thumbnail="{% static 'imagestyle/wave.png' %}" >浮世绘--巨浪</option>
+  <option value="udnie" data-thumbnail="{% static 'imagestyle/udnie.png' %}">超现实主义-舞蹈</option>
+  <option value="denoised_starry" data-thumbnail="{% static 'imagestyle/starry.png' %}">抽象主义-星月夜</option>
+    <option value="mosaic" data-thumbnail="{% static 'imagestyle/mosaic.png' %}" >马赛克-少女</option>
+  <option value="cubist" data-thumbnail="{% static 'imagestyle/cubist.png' %}">立体主义-房屋</option>
+  <option value="feathers" data-thumbnail="{% static 'imagestyle/feathers.png' %}">水彩-羽毛</option>
+  <option value="scream" data-thumbnail="{% static 'imagestyle/scream.png' %}" >表现主义-呐喊</option>
+</select>
+    <br>
+    <input style="width: 100px; height: 33px;border-radius: 5px;color: #6c6ce5;font-size:20px;" type="submit" value="提交" onclick="check()">
+<hr />
+
+</form>
+
+
+
+<!-- partial -->
+<div class="wave1"></div>
+<div class="wave3"></div>
+<div class="wave2"></div>
+
+  </a>
+</body>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script  src="{% static 'js/selectscript.js' %}"></script>
+<script>
+    function fn() {
+        var xhr;
+        if (window.ActiveXObject )
+        {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP")
+        }else if(window.XMLHttpRequest)
+        {
+            xhr = new XMLHttpRequest()
+        }
+        var url = '{% url 'webapp:uplogic' %}';
+        xhr.open('POST',url,true);
+        xhr.setRequestHeader('X-CSRFToken','{{ csrf_token }}');
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status===200){
+                if(xhr.responseText==='OK'){
+                    document.getElementsByTagName('body')[0]
+                }
+            }
+        }
+    }
+    function check() {
+        var file = document.getElementById('messages').innerText;
+        var style = document.getElementsByName('sele')[0].value;
+        console.log(file,style);
+        if(file==='') {
+            alert('请添加图片');
+            event.preventDefault();
+        }
+
+
+    }
+</script>
+</html>

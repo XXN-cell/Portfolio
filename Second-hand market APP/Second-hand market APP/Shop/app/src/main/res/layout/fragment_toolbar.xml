@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="55dp"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/shape_fragment_toolbar"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/tab_onebg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tab_one_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="6dp"
+            android:src="@mipmap/tab_one_pressed" />
+
+        <TextView
+            android:id="@+id/tab_one_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="首页"
+            android:textColor="@color/system_text_color_22"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_twobg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tab_two_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="6dp"
+            android:src="@mipmap/tab_two_normal" />
+
+        <TextView
+            android:id="@+id/tab_two_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="购物车"
+            android:textColor="@color/system_text_color_11"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tab_threebg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tab_three_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="6dp"
+            android:src="@mipmap/tab_three_normal" />
+
+        <TextView
+            android:id="@+id/tab_three_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="我的"
+            android:textColor="@color/system_text_color_11"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>
